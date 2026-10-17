@@ -22,10 +22,10 @@ jobs:
         run: |
           set -o pipefail
           buildozer -v android debug 2>&1 | tee build.log || true
-          echo "===== ПОСЛЕДНИЕ 80 СТРОК ====="
+          echo "===== ПОСЛЕДНИЕ 80 СТРОК ЛОГА ====="
           tail -n 80 build.log
 
-.     - name: Show real error
+      - name: Show real error
         if: always()
         run: |
           if [ -d $HOME/.buildozer/android/platform/python-for-android ]; then
@@ -34,3 +34,16 @@ jobs:
           else
             echo "python-for-android не был скачан — ошибка раньше этого этапа"
           fi
+
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: simon-apk
+          path: bin/*.apk
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
