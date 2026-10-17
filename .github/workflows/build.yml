@@ -19,8 +19,11 @@ jobs:
           pip install buildozer cython==0.29.36
 
       - name: Build APK
-        continue-on-error: true
-        run: buildozer -v android debug
+        run: |
+          set -o pipefail
+          buildozer -v android debug 2>&1 | tee build.log || true
+          echo "===== ПОСЛЕДНИЕ 80 СТРОК ====="
+          tail -n 80 build.log
 
 .     - name: Show real error
         if: always()
