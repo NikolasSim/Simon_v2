@@ -12,7 +12,7 @@ android.permissions = RECORD_AUDIO,INTERNET,POST_NOTIFICATIONS,WAKE_LOCK
 android.api = 33
 android.minapi = 24
 android.archs = arm64-v8a
-android.accept_SDK_license=True
+android.accept_sdk_license=True
 
 [buildozer]
 log_level = 2
