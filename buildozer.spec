@@ -5,7 +5,7 @@ package.domain = org.simon.assistant
 source.dir = .
 source.include_exts = py,json,wav
 version = 0.4
-requirements = python3,kivy==2.3.0,requests
+requirements = python3,kivy==2.3.1,requests
 orientation = portrait
 fullscreen = 0
 android.permissions = RECORD_AUDIO,INTERNET,POST_NOTIFICATIONS,WAKE_LOCK
