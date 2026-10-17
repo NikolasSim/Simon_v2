@@ -22,8 +22,12 @@ jobs:
         continue-on-error: true
         run: buildozer -v android debug
 
-      - name: Show real error
+.     - name: Show real error
         if: always()
         run: |
-          cd $HOME/.buildozer/android/platform/python-for-android
-          python3 -m pythonforandroid.toolchain create --dist_name=simon --bootstrap=sdl2 --requirements=python3,kivy==2.3.1,requests --arch=arm64-v8a --copy-libs --color=always --storage-dir=$HOME/.buildozer/android/platform/build-arm64-v8a --ndk-api=24 --ignore-setup-py --debug 2>&1 || true
+          if [ -d $HOME/.buildozer/android/platform/python-for-android ]; then
+            cd $HOME/.buildozer/android/platform/python-for-android
+            python3 -m pythonforandroid.toolchain create --dist_name=simon --bootstrap=sdl2 --requirements=python3,kivy==2.3.1,requests --arch=arm64-v8a --copy-libs --color=always --storage-dir=$HOME/.buildozer/android/platform/build-arm64-v8a --ndk-api=24 --ignore-setup-py --debug 2>&1 || true
+          else
+            echo "python-for-android не был скачан — ошибка раньше этого этапа"
+          fi
