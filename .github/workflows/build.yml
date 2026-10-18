@@ -14,7 +14,12 @@ jobs:
           sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses5-dev libtinfo5 cmake libffi-dev libssl-dev
           pip install buildozer cython==0.29.36
       - name: Build APK
-- name: Show real error
+        run: |
+          set -o pipefail
+          buildozer -v android debug 2>&1 | tee build.log
+          echo "===== ПОСЛЕДНИЕ 80 СТРОК ЛОГА ====="
+          tail -n 80 build.log
+      - name: Show real error
         if: always()
         run: |
           P4A=$HOME/.buildozer/android/platform/python-for-android
@@ -34,7 +39,3 @@ jobs:
         with:
           name: build-log
           path: build.log
-        run: |
-          set -o pipefail
-          buildozer -v android debug 2>&1 | tee build.log
-          tail -n 80 build.log
