@@ -1,6 +1,6 @@
 [app]
 title = Simon
-p4a.branch=v2024.01.22
+p4a.branch=release-2024.01.21
 package.name = simon
 package.domain = org.simon.assistant
 source.dir = .
@@ -14,7 +14,7 @@ android.api = 33
 android.minapi = 24
 android.archs = arm64-v8a
 android.accept_sdk_license=True
-android.ndk=25b
+android.sdk = 25b
 
 [buildozer]
 log_level = 2
