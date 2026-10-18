@@ -1,5 +1,6 @@
 [app]
 title = Simon
+p4a.branch=2024.1.21
 package.name = simon
 package.domain = org.simon.assistant
 source.dir = .
